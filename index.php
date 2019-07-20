@@ -1,3 +1,6 @@
 <?php
 
-echo "Salut Fanfoué!"
+require __DIR__ . '/vendor/autoload.php';
+
+echo "Salut Fanfouer!";
+
