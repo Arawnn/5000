@@ -1,5 +1,15 @@
 {
     "require": {
-        "cboden/ratchet": "^0.4.1"
+        "cboden/ratchet": "^0.4.1",
+        "illuminate/database": "5.5.*",
+        "php" : ">=7.2.0",
+        "slim/slim": "2.*"
+    },
+
+    "autoload":{
+        "psr-4" : {
+            "mywishlist\\":"src/",
+            "conf\\":"src/conf"
+        }
     }
 }
