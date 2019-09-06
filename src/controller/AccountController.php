@@ -24,4 +24,10 @@ class AccountController {
         // TODO
     }
 
+    public function getAccountDetails()
+    {
+
+    }
+
+    public function postAccountDetails($request, $response, $args)
 }

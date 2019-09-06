@@ -1,32 +1,51 @@
 <?php
-
 require __DIR__ . '/vendor/autoload.php';
-
-use Illuminate\Database\Capsule\Manager as DB;
-use \Slim\Slim as Slim;
-
-// use Ratchet\Server\IoServer;
-// use Ratchet\Http\HttpServer;
-// use Ratchet\WebSocket\WsServer;
-
+use DI\Container;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
+use Slim\Factory\AppFactory;
+use Slim\Middleware\ContentLengthMiddleware;
+use Slim\Psr7\Response as Response;
+use Slim\Views\Twig;
+use Slim\Views\TwigExtension;
+use Slim\Views\TwigMiddleware;
 use The5000\model\Account as Account;
-
 use The5000\controller\AccountController as AccountController;
 
-// Configures database
-$db = new DB();
-$db->addConnection(parse_ini_file('src/conf/config.ini'));
-$db->setAsGlobal();
-$db->bootEloquent();
 
-session_start();
+/**
+ * DEPENDENCIES INJECTIONS
+ */
+$container = new Container();
+$container->set('HomeController', function(ContainerInterface $c) {
+	$view = $c->get('view');
+	return new HomeController($view);
+});
 
-// Creates Slim instance 
-$app = new Slim();
-$app->config(['routes.case_sensitive' => false]);
+AppFactory::setContainer($container);
+
+// Instantiate App
+$app = AppFactory::create();
 
 
-// Home page
+// Add error middleware
+$app->addErrorMiddleware(true, true, true);
+
+
+/**
+ * TWIG MIDDLEWARE
+ */
+
+$routeParser = $app->getRouteCollector()->getRouteParser();
+$twig = new Twig(__DIR__ . './templates');
+$twigMiddleware = new TwigMiddleware($twig, $container, $routeParser);
+$app->add($twigMiddleware);
+
+
+/**
+ * ROUTING
+ */
+
 $app->get('/', function() {
     ?>
     <h1> The 5000 </h1>
@@ -39,5 +58,15 @@ $app->get('/', function() {
 })->name('home');
 
 
-// Runs Slim
+//  $app->get('/', '\HomeController:home');
+
+
+
+$app->get('/{name}', function (Request $request, Response $response, array $args) {
+	return $this->get('view')->render($response, 'layout.html.twig', [
+		'name' => $args['name']
+	]);
+});
+
+// Run Slims
 $app->run();
