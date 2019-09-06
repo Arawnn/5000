@@ -1,0 +1,13 @@
+
+.error {
+	color: crimson;
+	font-style: italic;
+}
+.success {
+	color: forestGreen;
+	font-style: italic;
+}
+.info {
+	color: gray;
+	font-style: italic;
+}
