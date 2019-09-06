@@ -1,0 +1,32 @@
+{
+    "current_turn": [
+        {
+          "current_player_id": 0,
+          "pending_score": 1200  
+        }
+    ],
+    "scores": [
+        {
+            "id_player": 0,
+            "steps": [700,900,1000],
+            "lost_steps": [800],
+            "current_step": 1000,
+            "current_step_life": 1
+        },
+        {
+            "id_player": 1,
+            "steps": [700,900],
+            "lost_steps": [800],
+            "current_step": 900,
+            "current_step_life": 2
+        },
+        {
+            "id_player": 2,
+            "steps": [700,1500],
+            "lost_steps": [800],
+            "current_step": "",
+            "current_step_life": 2
+        }
+    ],
+    "your_turn": true
+}
