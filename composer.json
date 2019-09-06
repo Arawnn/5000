@@ -1,4 +1,6 @@
 {
+    "name": "the 5000",
+    "description": "game of the year",
     "autoload": {
         "psr-4": {
             "The5000\\": "src"
