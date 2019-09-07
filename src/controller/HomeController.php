@@ -1,5 +1,6 @@
 <?php
-namespace The5000\controller;
+namespace The5000\Controller;
+use Slim\Views\Twig;
 
 class HomeController
 {
@@ -12,6 +13,10 @@ class HomeController
 
     public function home($request, $response, $args)
     {
+        // var_dump($request);
+        // var_dump($response);
+        // $body = $response->getBody();
+        // return $body;
         return $this->get('view')->render($response, 'layout.html.twig', [
             'name' => $args['name']
         ]);
