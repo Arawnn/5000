@@ -1,5 +1,5 @@
 
-let sock = new WebSocket( 'ws://192.168.1.17:15373/bin/game-server.php' );
+let sock = new WebSocket( 'ws://192.168.1.53:15373/bin/game-server.php' );
 let div_responses = document.getElementById('responses');
 let input = document.getElementById('query_input');
 

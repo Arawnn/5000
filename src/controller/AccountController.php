@@ -30,4 +30,7 @@ class AccountController {
     }
 
     public function postAccountDetails($request, $response, $args)
+    {
+        
+    }
 }

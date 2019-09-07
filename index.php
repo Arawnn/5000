@@ -46,27 +46,12 @@ $app->add($twigMiddleware);
  * ROUTING
  */
 
-$app->get('/', function() {
-    ?>
-    <h1> The 5000 </h1>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/game.css">
-    <input id="query_input" type="text" name="query_input" placeholder="Commandes..." disabled>
-    <p id="responses"></p>
-    <script src='script/game.js'></script>
-    <?php
-})->name('home');
+$app->get('/', function (Request $request, Response $response, array $args) {
+	return $this->get('view')->render($response, 'layout.html.twig');
+})->setName('home');
 
 
-//  $app->get('/', '\HomeController:home');
-
-
-
-$app->get('/{name}', function (Request $request, Response $response, array $args) {
-	return $this->get('view')->render($response, 'layout.html.twig', [
-		'name' => $args['name']
-	]);
-});
+ $app->get('/', 'The5000\Controller\HomeController:home');
 
 // Run Slims
 $app->run();
