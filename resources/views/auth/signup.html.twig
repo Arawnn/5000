@@ -1,0 +1,24 @@
+{% extends '/templates/layout.html.twig' %}
+
+{% block content %}
+    <div class="row  d-flex col-3 h-100">
+          <form class="col-12">
+              <fieldset class="form-group">
+                    <legend class="col-form-legend bg-info text-center text-light">S'inscrire</legend>
+                    <div class="form-group">
+                        <label for="">Pseudo</label>
+                        <input type="text" class="form-control" name="pseudo" id="" aria-describedby="helpId" placeholder="">
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" class="form-control" name="" id="" placeholder="">
+                    </div>
+              </fieldset>
+              <div class="form-group flex-column">
+                  <div class="col-6 justify-content-center">
+                      <button type="submit" class="btn btn-primary">Envoyer</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+    </div>       
+{% endblock %}

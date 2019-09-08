@@ -11,3 +11,6 @@ use \Psr\Http\Message\ResponseInterface as Response;
 // })->setName('home');
 
 $app->get('/', 'HomeController:index');
+
+$app->get('/login', 'AuthController:getSignup')->setName('auth.signup');
+

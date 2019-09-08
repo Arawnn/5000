@@ -56,3 +56,7 @@ $container['twig'] = function(Container $container) use($settings) {
 $container['HomeController'] = function(Container $container) {
     return new \The5000\Controllers\HomeController($container);
 };
+
+$container['AuthController'] = function(Container $container) {
+    return new \The5000\Controllers\Auth\AuthController($container);
+};
