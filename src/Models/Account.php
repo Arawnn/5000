@@ -12,4 +12,9 @@ class Account extends Model {
     public $timestamps = false;
     protected $dates = ['deleted_at'];
 
+    protected $fillable = [
+        'email',
+        'pseudo',
+        'password'
+    ];
 }
