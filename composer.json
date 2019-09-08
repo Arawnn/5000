@@ -2,7 +2,6 @@
     "name": "TheCinqMille",
     "description": "game of the year",
     "require": {
-        "cboden/ratchet": "^0.4.1",
         "illuminate/database": "5.5.*",
         "php" : ">=7.2.0",
         "slim/slim": "3.*",
@@ -18,7 +17,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Test\\": "tests"
+            "The5000\\Test\\": "tests"
         }
     },
     "config": {

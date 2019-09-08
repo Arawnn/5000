@@ -1,6 +1,6 @@
 <?php
 
-namespace The5000\model;
+namespace The5000\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

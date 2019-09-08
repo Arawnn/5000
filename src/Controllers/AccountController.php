@@ -1,9 +1,9 @@
 <?php
 
-namespace The5000\controller;
+namespace The5000\Controllers;
 
 use Illuminate\Database\QueryException;
-use The5000\model\Account;
+use The5000\Models\Account;
 
 class AccountController {
 

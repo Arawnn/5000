@@ -3,7 +3,11 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-$app->get('/', function (Request $request, Response $response, array $args) {
-	$this->logger->info('SOÑETHING');
-	return $response->getBody()->write('V3');
-})->setName('home');
+// $app->get('/', function (Request $request, Response $response, array $args) {
+//     $args = [
+//         'now' => date('Y-m-d H:i:s')
+//     ];
+// 	return $this->get('twig')->render($response, 'layout.html.twig', $args);
+// })->setName('home');
+
+$app->get('/', 'HomeController:index');

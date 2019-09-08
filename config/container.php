@@ -1,6 +1,7 @@
 <?php
 
 use Slim\Container;
+use Slim\Views\Twig;
 
 /** @var \Slim\App $app */
 $container = $app->getContainer();
@@ -9,22 +10,47 @@ $container = $app->getContainer();
 $container['environment'] = function () {
     $scriptName = $_SERVER['SCRIPT_NAME'];
     $_SERVER['SCRIPT_NAME'] = dirname(dirname($scriptName)) . '/' . basename($scriptName);
+
     return new Slim\Http\Environment($_SERVER);
 };
 
 $settings = $container->get('settings');
 
-$container['logger'] = function($c) use ($settings) {
+$container['logger'] = function(Container $c) use ($settings) {
 	$logger = new \Monolog\Logger('my_logger');
 	$fh = new \Monolog\Handler\StreamHandler($settings['logs']. '/app.log');
-	$logger->pushHandler($fh);
+    $logger->pushHandler($fh);
+    
 	return $logger;
 };
 
-$container['db'] = function($c) {
-	$db = $c['settings']['db'];
-	$pdo = new PDO('mysql:host=' . $db['host'] . ';dbname=' . $db['dbname'], $db['user'], $db['pass']);
+$container['db'] = function(Container $c) use ($settings) {
+	$db = $settings['db'];
+	$pdo = new PDO('mysql:host=' . $db['host'] . ';dbname=' . $db['database'], $db['username'], $db['password']);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 	return $pdo;
+};
+
+$container['twig'] = function(Container $container) use($settings) {
+    $viewPath = $settings['twig']['path'];
+
+    $twig = new Twig($viewPath, [
+        'cache' => $settings['twig']['cache_enabled'] ? $settings['twig']['cache_path'] : false
+    ]);
+
+    /** @var Twig_Loader_Filesystem $loader */
+    $loader = $twig->getLoader();
+    $loader->addPath($settings['public'], 'public');
+
+    // Instantiate and add Slim specific extension
+    $router = $container->get('router');
+    $uri = \Slim\Http\Uri::createFromEnvironment($container->get('environment'));
+    $twig->addExtension(new \Slim\Views\TwigExtension($router,$uri));
+
+    return $twig;
+};
+
+$container['HomeController'] = function(Container $container) {
+    return new \The5000\Controllers\HomeController($container);
 };
