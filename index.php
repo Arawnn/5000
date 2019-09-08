@@ -5,9 +5,9 @@ require __DIR__ . '/vendor/autoload.php';
 use DI\Container;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
-use Slim\Factory\AppFactory;
-use Slim\Psr7\Response as Response;
+use \Psr\Http\Message\ResponseInterface as Response;
 use Slim\Views\Twig;
+use Slim\App as Slim;
 use Slim\Views\TwigExtension;
 use Slim\Views\TwigMiddleware;
 use The5000\model\Account as Account;
@@ -19,24 +19,15 @@ use Psr\Container\ContainerInterface as ContainerInterface;
  */
 $container = new Container();
 
-AppFactory::setContainer($container);
 
 // Instantiate App
-$app = AppFactory::create();
-
-
-// Add error middleware
-$app->addErrorMiddleware(true, true, true);
+$app = new Slim();
 
 
 /**
  * TWIG MIDDLEWARE
  */
 
-$routeParser = $app->getRouteCollector()->getRouteParser();
-$twig = new Twig(__DIR__ . './resources/views');
-$twigMiddleware = new TwigMiddleware($twig, $container, $routeParser);
-$app->add($twigMiddleware);
 
 
 /**
@@ -44,7 +35,7 @@ $app->add($twigMiddleware);
  */
 
 $app->get('/', function (Request $request, Response $response, array $args) {
-	return $this->get('view')->render($response, 'layout.html.twig');
+	return $response->getBody()->write('V3');
 })->setName('home');
 
 // Run Slims
