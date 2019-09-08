@@ -1,12 +1,14 @@
 
 let div_responses = document.getElementById('responses');
 let input_query = document.getElementById('query_input');
-let input_host = document.getElementById('query_input');
+let input_host = document.getElementById('host');
 let btn_start_server = document.getElementById('btn_start_server');
 
 btn_start_server.addEventListener('click', function() {
     let host = input_host.value.length ? input_host.value : 'the5000.com';
     let sock = new WebSocket( 'ws://'+host+':15373/bin/game-server.php' );
+    input_host.disabled = true;
+    btn_start_server.disabled = true;
 
     sock.onopen = function(e) {
         div_responses.innerHTML += '<span class="success">Connexion établie !</span><br>';
