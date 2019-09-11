@@ -20,7 +20,8 @@ $settings['twig'] = [
 // Database settings
 $settings['db'] = [
     'driver' => 'mysql',
-    'host' => 'localhost',
+    'host' => '127.0.0.1',
+    'port' => '3306',
     'database' => 'the5000',
     'username' => 'root',
     'password' => '',

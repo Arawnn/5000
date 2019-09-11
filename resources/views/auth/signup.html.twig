@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="row  d-flex col-3 h-100">
-          <form class="col-12">
+          <form class="col-12" action={{ path_for('auth.signup') }} method="POST">
               <fieldset class="form-group">
                     <legend class="col-form-legend bg-info text-center text-light">S'inscrire</legend>
                     <div class="form-group">

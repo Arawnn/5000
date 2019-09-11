@@ -10,7 +10,8 @@ use \Psr\Http\Message\ResponseInterface as Response;
 // 	return $this->get('twig')->render($response, 'layout.html.twig', $args);
 // })->setName('home');
 
-$app->get('/', 'HomeController:index');
+$app->get('/', 'HomeController:index')->setName('home');
 
 $app->get('/login', 'AuthController:getSignup')->setName('auth.signup');
+$app->post('/login', 'AuthController:postSignup');
 

@@ -13,7 +13,6 @@ class Account extends Model {
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'email',
         'pseudo',
         'password'
     ];
