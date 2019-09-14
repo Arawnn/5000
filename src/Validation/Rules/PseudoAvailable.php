@@ -1,0 +1,14 @@
+<?php
+
+namespace The5000\Validation\Rules;
+
+use Respect\Validation\Rules\AbstractRule;
+use The5000\Models\Account;
+
+class PseudoAvailable extends AbstractRule
+{
+    public function validate($input)
+    {
+        return Account::where('pseudo',$input)->count() === 0;
+    }
+}

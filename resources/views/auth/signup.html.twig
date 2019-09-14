@@ -1,24 +1,31 @@
 {% extends '/templates/layout.html.twig' %}
 
 {% block content %}
-    <div class="row  d-flex col-3 h-100">
-          <form class="col-12" action={{ path_for('auth.signup') }} method="POST">
-              <fieldset class="form-group">
-                    <legend class="col-form-legend bg-info text-center text-light">S'inscrire</legend>
-                    <div class="form-group">
-                        <label for="">Pseudo</label>
-                        <input type="text" class="form-control" name="pseudo" id="" aria-describedby="helpId" placeholder="">
-                    <div class="form-group">
-                        <label for="password">Mot de passe</label>
-                        <input type="password" class="form-control" name="" id="" placeholder="">
-                    </div>
-              </fieldset>
-              <div class="form-group flex-column">
-                  <div class="col-6 justify-content-center">
-                      <button type="submit" class="btn btn-primary">Envoyer</button>
-                  </div>
-              </div>
-          </form>
+    <div class="row align-self-center justify-content-center">
+        <div class="col-3">
+            <form class="col-12" action={{ path_for('auth.signup') }} method="POST">
+                <fieldset class="form-group">
+                      <legend class="col-form-legend text-center">Sign up</legend>
+                        <div class="form-group">
+                          <label for="">Pseudo</label>
+                          <input type="text" class="form-control {{ errors.pseudo ? 'is-invalid' : '' }}" name="pseudo" id="pseudo" aria-describedby="helpId" placeholder="Michel, Jean, Jacques" value={{ old.pseudo }}>
+                          {% if errors.pseudo %}
+                            <span class="invalid-feedback">{{ errors.pseudo | first }}</span>
+                          {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control {{ errors.password ? 'is-invalid' : '' }}" name="password" id="password">
+                            {% if errors.password %}
+                                <span class="invalid-feedback">{{ errors.password | first }}</span>
+                            {% endif %}
+                        </div>
+                      <div class="form-group text-center">
+                          <button type="submit" class="btn btn-primary">Envoyer</button>
+                      </div>
+                </fieldset>
+            </form>
+        </div>
       </div>
     </div>       
 {% endblock %}
