@@ -12,6 +12,9 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->get('/', 'HomeController:index')->setName('home');
 
-$app->get('/login', 'AuthController:getSignup')->setName('auth.signup');
-$app->post('/login', 'AuthController:postSignup');
+$app->get('/signup', 'AuthController:getSignup')->setName('auth.signup');
+$app->post('/signup', 'AuthController:postSignup');
+
+$app->get('/signin', 'AuthController:getSignin')->setName('auth.signin');
+$app->post('/signin', 'AuthController:postSignin');
 

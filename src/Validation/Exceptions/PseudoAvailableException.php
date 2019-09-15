@@ -8,7 +8,7 @@ class PseudoAvailableException extends ValidationException
 {
     public static $defaultTemplates = [
         self::MODE_DEFAULT => [
-            self::STANDARD => 'Pseudo is already taken',
+            self::STANDARD => 'pseudo is already taken',
         ],
     ];
 }

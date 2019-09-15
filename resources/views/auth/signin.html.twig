@@ -3,9 +3,9 @@
 {% block content %}
     <div class="row align-self-center justify-content-center">
         <div class="col-3">
-            <form class="col-12" action={{ path_for('auth.signup') }} method="POST">
+            <form class="col-12" action={{ path_for('auth.signin') }} method="POST">
                 <fieldset class="form-group">
-                      <legend class="col-form-legend text-center">Sign up</legend>
+                      <legend class="col-form-legend text-center">Sign in</legend>
                         <div class="form-group">
                           <label for="">Pseudo</label>
                           <input type="text" class="form-control {{ errors.pseudo ? 'is-invalid' : '' }}" name="pseudo" id="pseudo" aria-describedby="helpId" placeholder="Michel, Jean, Jacques" value={{ old.pseudo }}>

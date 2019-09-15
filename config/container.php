@@ -57,6 +57,14 @@ $container['validator'] = function(Container $container) {
     return new The5000\Validation\Validator;
 };
 
+$container['csrf'] = function(Container $container) {
+    return new Slim\Csrf\Guard;
+};
+
+$container['auth'] = function(Container $container) {
+    return new The5000\Auth\Auth;
+};
+
 $container['HomeController'] = function(Container $container) {
     return new \The5000\Controllers\HomeController($container);
 };
