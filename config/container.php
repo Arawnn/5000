@@ -34,6 +34,11 @@ $container['db'] = function(Container $c) use ($capsule) {
     return $capsule;
 };
 
+$container['auth'] = function(Container $container) {
+    return new The5000\Auth\Auth;
+};
+
+
 $container['twig'] = function(Container $container) use($settings) {
     $viewPath = $settings['twig']['path'];
 
@@ -49,20 +54,28 @@ $container['twig'] = function(Container $container) use($settings) {
     $router = $container->get('router');
     $uri = \Slim\Http\Uri::createFromEnvironment($container->get('environment'));
     $twig->addExtension(new \Slim\Views\TwigExtension($router,$uri));
-
+    
+    $twig->getEnvironment()->addGlobal('auth', [
+        'check' => $container->auth->check(),
+        'user' => $container->auth->user()
+    ]);
+    
+    $twig->getEnvironment()->addGlobal('flash', $container->flash);
+    
     return $twig;
 };
+
 
 $container['validator'] = function(Container $container) {
     return new The5000\Validation\Validator;
 };
 
-$container['csrf'] = function(Container $container) {
-    return new Slim\Csrf\Guard;
+$container['flash'] = function(Container $container) {
+    return new Slim\Flash\Messages();
 };
 
-$container['auth'] = function(Container $container) {
-    return new The5000\Auth\Auth;
+$container['csrf'] = function(Container $container) {
+    return new Slim\Csrf\Guard;
 };
 
 $container['HomeController'] = function(Container $container) {

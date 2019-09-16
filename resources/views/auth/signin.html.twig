@@ -7,10 +7,10 @@
                 <fieldset class="form-group">
                       <legend class="col-form-legend text-center">Sign in</legend>
                         <div class="form-group">
-                          <label for="">Pseudo</label>
-                          <input type="text" class="form-control {{ errors.pseudo ? 'is-invalid' : '' }}" name="pseudo" id="pseudo" aria-describedby="helpId" placeholder="Michel, Jean, Jacques" value={{ old.pseudo }}>
-                          {% if errors.pseudo %}
-                            <span class="invalid-feedback">{{ errors.pseudo | first }}</span>
+                          <label for="">Email</label>
+                          <input type="text" class="form-control {{ errors.email ? 'is-invalid' : '' }}" name="email" id="email" aria-describedby="helpId" placeholder="you@domain.com" value={{ old.email }}>
+                          {% if errors.email %}
+                            <span class="invalid-feedback">{{ errors.email | first }}</span>
                           {% endif %}
                         </div>
                         <div class="form-group">

@@ -14,6 +14,7 @@ class Account extends Model {
 
     protected $fillable = [
         'pseudo',
-        'password'
+        'email',
+        'password',
     ];
 }

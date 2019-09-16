@@ -13,7 +13,8 @@
 
     {% include '/templates/partials/header.html.twig' %}
     
-    <div id="container d-flex h-100">
+    <div id="container">
+           {% include '/templates/partials/flash.html.twig' %}
             {% block content %}{% endblock %}
     </div>
 

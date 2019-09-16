@@ -6,10 +6,23 @@ use The5000\Models\Account;
 
 class Auth
 {
-    public function connect($pseudo, $password)
-    {
-        $account = Account::where('pseudo', $pseudo)->first();
 
+    public function user()
+    {
+        if(isset($_SESSION['user']))
+        {
+            return Account::find($_SESSION['user']);
+        }
+    }
+
+    public function check()
+    {
+        return isset($_SESSION['user']);
+    }
+    public function connect($email, $password)
+    {
+        $account = Account::where('email', $email)->first();
+        var_dump($account);
         if(!$account)
         {
             return false;
@@ -23,5 +36,13 @@ class Auth
         }
 
         return false;
+    }
+
+    public function logout()
+    {
+        if(isset($_SESSION['user']))
+        {
+            unset($_SESSION['user']);
+        }
     }
 }

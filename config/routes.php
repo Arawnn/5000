@@ -18,3 +18,4 @@ $app->post('/signup', 'AuthController:postSignup');
 $app->get('/signin', 'AuthController:getSignin')->setName('auth.signin');
 $app->post('/signin', 'AuthController:postSignin');
 
+$app->get('/signout', 'AuthController:getSignout')->setName('auth.signout');
