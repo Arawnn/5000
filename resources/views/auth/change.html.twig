@@ -3,16 +3,9 @@
 {% block content %}
     <div class="d-flex flex-column h-100 justify-content-center align-items-center">
         <div class="col-3 card">
-            <form class="col-12 card-body" action={{ path_for('auth.signin') }} method="POST">
+            <form class="col-12 card-body" action={{ path_for('auth.change') }} method="POST">
                 <fieldset class="form-group">
-                    <legend class="col-form-legend text-center">Sign in</legend>
-                    <div class="form-group">
-                        <label for="">Email</label>
-                        <input type="text" class="form-control {{ errors.email ? 'is-invalid' : '' }}" name="email" id="email" aria-describedby="helpId" placeholder="you@domain.com" value={{ old.email }}>
-                        {% if errors.email %}
-                            <span class="invalid-feedback">{{ errors.email | first }}</span>
-                        {% endif %}
-                    </div>
+                    <legend class="col-form-legend text-center">New password</legend>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control {{ errors.password ? 'is-invalid' : '' }}" name="password" id="password">
@@ -21,7 +14,7 @@
                         {% endif %}
                     </div>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary">Send</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
 
 

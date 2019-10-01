@@ -1,4 +1,5 @@
 <?php
+
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use \Psr\Http\Message\ResponseInterface as Response;
@@ -19,3 +20,6 @@ $app->get('/signin', 'AuthController:getSignin')->setName('auth.signin');
 $app->post('/signin', 'AuthController:postSignin');
 
 $app->get('/signout', 'AuthController:getSignout')->setName('auth.signout');
+
+$app->get('/change', 'AuthController:getChangePassword')->setName('auth.change');
+$app->post('/change', 'AuthController:postChangePassword');

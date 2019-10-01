@@ -1,20 +1,37 @@
-html, body {
+html,
+body {
 	height: 100%;
 }
-body {
-	padding-top: 90px;
-}
+
 
 .error {
 	color: crimson;
 	font-style: italic;
 }
+
 .success {
 	color: forestGreen;
 	font-style: italic;
 }
+
 .info {
 	color: gray;
 	font-style: italic;
 }
 
+nav {
+	background-color: #2A4B7C;
+}
+
+a {
+	color: #FFF;
+}
+
+a:hover {
+	color: #E08119;
+}
+
+#container {
+	min-height: 100%;
+	height: 100%;
+}
